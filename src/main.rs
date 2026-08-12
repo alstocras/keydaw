@@ -23,7 +23,7 @@ fn main() {
 
         // scoping
         {
-            // convert to string
+            // convert to string via shadowing
             let guess: u32 = match guess.trim().parse() {
                 Ok(num) => num,
                 Err(_) => continue,
