@@ -1,4 +1,7 @@
-# project name
+# keydaw
+
+![hackatime](https://hackatime.hackclub.com/api/v1/badge/U0BN4QJUWHK/alstocras/keydaw)
+
 stuff about the project
 ## how to contribute
 always use PRs and use the following guidelines
