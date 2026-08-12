@@ -4,31 +4,40 @@ use std::*;
 
 // main function
 fn main() {
-    // prompt
-    println!("pls guess");
-
     // get random num
-    let rNum = rand::rng().random_range(1..=100);
+    let rNum: u32 = rand::rng().random_range(1..=100);
 
-    // empty string to store input
-    let mut guess: String = String::new();
+    // forever loop
+    loop {
+        // prompt
+        println!("pls guess");
 
-    // read line and give it to the mutable reference guess
-    io::stdin().read_line(&mut guess).expect("fail");
+        // empty string to store input
+        let mut guess: String = String::new();
 
-    // confirm guess
-    println!("you guess: {guess}");
+        // read line and give it to the mutable reference guess
+        io::stdin().read_line(&mut guess).expect("fail");
 
-    // scoping
-    {
-        // convert to string
-        let guess: u32 = guess.trim().parse().expect("invalid");
+        // confirm guess
+        println!("you guess: {guess}");
 
-        // check cases
-        match guess.cmp(&rNum) {
-            cmp::Ordering::Less => println!("smaller"),
-            cmp::Ordering::Greater => println!("greater"),
-            cmp::Ordering::Equal => println!("yay you got it!!"),
+        // scoping
+        {
+            // convert to string
+            let guess: u32 = match guess.trim().parse() {
+                Ok(num) => num,
+                Err(_) => continue,
+            };
+
+            // check cases
+            match guess.cmp(&rNum) {
+                cmp::Ordering::Less => println!("smaller"),
+                cmp::Ordering::Greater => println!("greater"),
+                cmp::Ordering::Equal => {
+                    println!("yay you got it!!");
+                    break;
+                }
+            }
         }
     }
 }
