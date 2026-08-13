@@ -1,9 +1,6 @@
 // imports!!
 use iced::*;
-use magic::*;
 
-// gives it a default value
-#[derive(Default)]
 // the notes and time vars
 struct Timeline {
     time: u64,
@@ -33,7 +30,7 @@ impl Timeline {
     }
 
     // show the stuff
-    fn view(&self) -> Element<Message> {
+    fn view(&self) -> widget::Row<widget::Column<Message>> {
         // buttons
         let iPitch = widget::button("+1 Hz").on_press(Message::IncPitch);
         let dPitch = widget::button("-1 Hz").on_press(Message::DecPitch);
@@ -49,15 +46,6 @@ impl Timeline {
             widget::column![iPitch, pitchD, dPitch],
             widget::column![iTime, timeD, iTime]
         ];
-        interface.into()
+        interface
     }
-}
-
-fn main() {
-    // init some vars
-    let mut timeline = Timeline::default();
-    let interface: Element<Message> = timeline.view();
-
-    // display
-    cookie::display(&interface);
 }
