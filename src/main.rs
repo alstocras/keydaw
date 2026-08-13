@@ -59,5 +59,5 @@ fn main() {
     let interface: Element<Message> = timeline.view();
 
     // display
-    cookie::display(&interface);
+    display(&interface);
 }
