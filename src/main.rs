@@ -4,19 +4,19 @@ use std::*;
 
 // timeline struct
 #[derive(Debug, Default)]
-struct Timeline<T> {
+struct Timeline {
     line: collections::HashMap<u64, f64>,
 }
 
 // timeline functions
-impl<T> Timeline<T> {
+impl Timeline {
     // updates everything
-    fn update(timeline: &mut Timeline<T>, mess: Message) {
+    fn update(timeline: &mut Timeline, mess: Message) {
         match mess {
-            Message::Quit => exit::<Task<T>>(),
+            Message::Quit => exit(),
         };
     }
-    fn view(timeline: &Timeline<T>) -> Element<'_, Message> {
+    fn view(timeline: &Timeline) -> Element<'_, Message> {
         widget::button("quit").on_press(Message::Quit).into()
     }
 }
@@ -29,5 +29,5 @@ enum Message {
 
 // main runner
 fn main() -> Result {
-    run(Timeline::<Task<T>>::update, Timeline::view)
+    run(Timeline::update, Timeline::view)
 }
