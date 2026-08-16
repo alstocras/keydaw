@@ -1,63 +1,24 @@
 // imports!!
 use iced::*;
-use magic::*;
+use winit::*;
 
 // gives it a default value
 #[derive(Default)]
 // the notes and time vars
-struct Timeline {
-    time: u64,
-    pitch: u64,
+struct AppState {
+    
 }
+
+// view renderer
+fn view(state: &AppState) -> Element<Messages>{widget::text("hello there").into()}
 
 // lets it duplicate
 #[derive(Clone)]
-// the different kinds of messages
+// the different kinds of interactions the user can have
 enum Message {
     IncTime,
     DecTime,
     IncPitch,
     DecPitch,
-}
-
-// the functions of a struct
-impl Timeline {
-    // checks what updated
-    fn update(&mut self, message: Message) {
-        match message {
-            Message::IncTime => self.time += 1,
-            Message::DecTime => self.time -= 1,
-            Message::IncPitch => self.pitch += 1,
-            Message::DecPitch => self.pitch -= 1,
-        }
-    }
-
-    // show the stuff
-    fn view(&self) -> Element<Message> {
-        // buttons
-        let iPitch = widget::button("+1 Hz").on_press(Message::IncPitch);
-        let dPitch = widget::button("-1 Hz").on_press(Message::DecPitch);
-        let iTime = widget::button("+1 s").on_press(Message::IncTime);
-        let dTime = widget::button("-1 s").on_press(Message::DecTime);
-
-        // time and freq
-        let timeD = widget::text(self.time);
-        let pitchD = widget::text(self.pitch);
-
-        // layout
-        let interface = widget::row![
-            widget::column![iPitch, pitchD, dPitch],
-            widget::column![iTime, timeD, iTime]
-        ];
-        interface.into()
-    }
-}
-
-fn main() {
-    // init some vars
-    let mut timeline = Timeline::default();
-    let interface: Element<Message> = timeline.view();
-
-    // display
-    display(&interface);
+    Quit,
 }
