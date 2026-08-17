@@ -11,9 +11,9 @@ struct Timeline {
 // timeline functions
 impl Timeline {
     // updates everything
-    fn update(timeline: &mut Timeline, mess: Message) {
+    fn update(timeline: &mut Timeline, mess: Message) -> Task<Message> {
         match mess {
-            Message::Quit => exit(),
+            Message::Quit => process::exit(0),
         };
     }
     fn view(timeline: &Timeline) -> Element<'_, Message> {
