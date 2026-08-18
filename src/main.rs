@@ -17,10 +17,18 @@ impl Timeline {
     // updates everything
     fn update(timeline: &mut Timeline, mess: Message) -> Task<Message> {
         match mess {
+            // quit app
             Message::Quit => process::exit(0),
+
+            // increment time
             Message::IncTime => {
+                // increase the global time
                 timeline.currentTime += 1;
+
+                // add to map
                 timeline.line.insert(timeline.currentTime, 0.0);
+
+                // debug print
                 println!("{:?}", timeline.line)
             }
         };
