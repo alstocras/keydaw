@@ -7,7 +7,7 @@ use std::*;
 struct Timeline {
     // timeline map <time, pitch>
     line: collections::HashMap<u64, f64>,
-    
+
     // for the incrementer
     currentTime: u64,
 }
