@@ -7,6 +7,9 @@ use std::*;
 struct Timeline {
     // timeline map <time, pitch>
     line: collections::HashMap<u64, f64>,
+    
+    // for the incrementer
+    currentTime: u64,
 }
 
 // timeline functions
@@ -16,7 +19,8 @@ impl Timeline {
         match mess {
             Message::Quit => process::exit(0),
             Message::IncTime => {
-                timeline.line.insert(0, 0.0);
+                timeline.currentTime += 1;
+                timeline.line.insert(timeline.currentTime, 0.0);
                 println!("{:?}", timeline.line)
             }
         };
